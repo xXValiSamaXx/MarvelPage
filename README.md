@@ -1,8 +1,8 @@
-*Marvel Explorer*
+**Marvel Explorer**
 
 Marvel Explorer es una aplicación web interactiva que permite a los usuarios explorar el vasto universo de Marvel. Desarrollada utilizando las últimas tecnologías web y la API oficial de Marvel, esta aplicación ofrece una experiencia inmersiva para los fans de Marvel.
 
-*Características Principales*
+**Características Principales**
 
 Exploración de Personajes: Búsqueda y filtrado de personajes de Marvel con información detallada, incluyendo cómics, series y eventos en los que aparecen.
 Biblioteca de Cómics: Acceso a una extensa colección de cómics con detalles sobre creadores, personajes y fechas de publicación.
@@ -10,7 +10,7 @@ Eventos del Universo Marvel: Exploración cronológica de los principales evento
 Diseño Responsivo: Interfaz adaptable que funciona perfectamente en dispositivos móviles y de escritorio.
 Modo Oscuro: Opción de cambiar entre tema claro y oscuro para una mejor experiencia de usuario.
 
-*Tecnologías Utilizadas*
+**Tecnologías Utilizadas**
 
 HTML5
 CSS3
@@ -19,7 +19,7 @@ Bootstrap 5
 API de Marvel
 Iconos de Bootstrap
 
-*Características Técnicas*
+**Características Técnicas**
 
 Implementación completa de componentes Bootstrap
 Sistema de filtrado y búsqueda avanzada
@@ -29,7 +29,7 @@ Modales interactivos para detalles
 Sistema de navegación fluido
 Manejo de estados de carga y errores
 
-*Desarrollado por:*
+**Desarrollado por:**
 
 Flores Chable Noelia Del Carmen
 Aviles Ayuso Angel R.
