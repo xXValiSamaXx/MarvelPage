@@ -1,38 +1,82 @@
-**Marvel Explorer**
+# 🦸‍♂️ Marvel Explorer
 
-Marvel Explorer es una aplicación web interactiva que permite a los usuarios explorar el vasto universo de Marvel. Desarrollada utilizando las últimas tecnologías web y la API oficial de Marvel, esta aplicación ofrece una experiencia inmersiva para los fans de Marvel.
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="Marvel Logo" width="400"/>
+</p>
 
-**Características Principales**
+## 📝 Descripción
 
-Exploración de Personajes: Búsqueda y filtrado de personajes de Marvel con información detallada, incluyendo cómics, series y eventos en los que aparecen.
-Biblioteca de Cómics: Acceso a una extensa colección de cómics con detalles sobre creadores, personajes y fechas de publicación.
-Eventos del Universo Marvel: Exploración cronológica de los principales eventos que han dado forma al universo Marvel.
-Diseño Responsivo: Interfaz adaptable que funciona perfectamente en dispositivos móviles y de escritorio.
-Modo Oscuro: Opción de cambiar entre tema claro y oscuro para una mejor experiencia de usuario.
+**Marvel Explorer** es una aplicación web interactiva que permite a los usuarios explorar el vasto universo de Marvel. Desarrollada utilizando las últimas tecnologías web y la API oficial de Marvel, esta aplicación ofrece una experiencia inmersiva para los fans de Marvel.
 
-**Tecnologías Utilizadas**
+## ⭐ Características Principales
 
-HTML5
-CSS3
-JavaScript (ES6+)
-Bootstrap 5
-API de Marvel
-Iconos de Bootstrap
+- 🦹‍♂️ **Exploración de Personajes**
+  - Búsqueda y filtrado avanzado
+  - Información detallada de cada personaje
+  - Visualización de cómics y series relacionadas
 
-**Características Técnicas**
+- 📚 **Biblioteca de Cómics**
+  - Extensa colección de cómics
+  - Detalles de creadores y personajes
+  - Fechas de publicación y disponibilidad
 
-Implementación completa de componentes Bootstrap
-Sistema de filtrado y búsqueda avanzada
-Paginación dinámica
-Visualización de estadísticas en tiempo real
-Modales interactivos para detalles
-Sistema de navegación fluido
-Manejo de estados de carga y errores
+- 🌟 **Eventos del Universo Marvel**
+  - Exploración cronológica
+  - Filtrado por años
+  - Detalles completos de cada evento
 
-**Desarrollado por:**
+- 💻 **Características Técnicas**
+  - Diseño totalmente responsivo
+  - Modo oscuro/claro
+  - Interfaz intuitiva y moderna
 
-Flores Chable Noelia Del Carmen
-Aviles Ayuso Angel R.
+## 🛠️ Tecnologías Utilizadas
 
-*Créditos*
-Esta aplicación utiliza la API de Marvel Comics. Todos los datos e imágenes son propiedad de Marvel Entertainment.
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+## 🔍 Funcionalidades Destacadas
+
+### 📱 Interfaz de Usuario
+- Diseño responsivo para todos los dispositivos
+- Navegación intuitiva
+- Animaciones y transiciones suaves
+
+### 🔄 Funcionalidades Dinámicas
+- Sistema de búsqueda en tiempo real
+- Filtrado avanzado de contenido
+- Paginación dinámica
+- Estadísticas actualizadas
+
+### 🎨 Personalización
+- Modo oscuro/claro
+- Interfaz adaptable
+- Componentes interactivos
+
+## 👥 Desarrolladores
+
+| Nombre | Rol |
+|--------|-----|
+| **Flores Chable Noelia Del Carmen** | Desarrollador Frontend |
+| **Aviles Ayuso Angel R.** | Desarrollador Frontend |
+
+## 📋 Requisitos Previos
+
+- Navegador web moderno
+- Conexión a Internet
+- API Key de Marvel (para desarrollo)
+
+## ⚖️ Licencia
+
+Este proyecto utiliza la API de Marvel Comics. Todos los datos e imágenes son propiedad de Marvel Entertainment.
+
+<p align="center">
+  <img src="https://i.annihil.us/u/prod/marvel/images/mu/web/2021/marvel-unlimited-logo-light.png" alt="Marvel API" width="200"/>
+</p>
+
+---
+<p align="center">
+  Desarrollado con ❤️ por el equipo preticor
+</p>
