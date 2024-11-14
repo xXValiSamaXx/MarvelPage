@@ -60,7 +60,7 @@
 | Nombre | Rol |
 |--------|-----|
 | **Flores Chable Noelia Del Carmen** | Desarrollador Frontend |
-| **Aviles Ayuso Angel R.** | Desarrollador Frontend |
+| **Aviles Ayuso Angel R.** | Desarrollador FrontEnd y BackEnd |
 
 ## 📋 Requisitos Previos
 
@@ -73,7 +73,7 @@
 Este proyecto utiliza la API de Marvel Comics. Todos los datos e imágenes son propiedad de Marvel Entertainment.
 
 <p align="center">
-  <img src="https://i.annihil.us/u/prod/marvel/images/mu/web/2021/marvel-unlimited-logo-light.png" alt="Marvel API" width="200"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="Marvel Logo" width="400"/>
 </p>
 
 ---
