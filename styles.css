@@ -1,0 +1,448 @@
+:root {
+    --marvel-red: #ED1D24;
+    --marvel-blue: #518CCA;
+    --marvel-orange: #FF9900;
+}
+
+.bg-marvel-red {
+    background-color: var(--marvel-red);
+}
+
+.text-marvel-red {
+    color: var(--marvel-red);
+}
+
+.hero-banner {
+    background-image: url('https://www.looper.com/img/gallery/the-biggest-marvel-characters-that-still-have-no-plans-to-debut-in-the-mcu/intro-1611277038.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    color: white;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-banner h2 {
+    position: relative;
+    z-index: 1;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Inputs y elementos de formulario en modo oscuro */
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode .input-group-text {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+/* Placeholder text en modo oscuro */
+.dark-mode .form-control::placeholder {
+    color: #888888 !important;
+}
+
+/* Hover y focus estados para inputs */
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus {
+    background-color: #363636 !important;
+    border-color: var(--marvel-blue) !important;
+    box-shadow: 0 0 0 0.25rem rgba(81, 140, 202, 0.25) !important;
+    color: #ffffff !important;
+}
+
+/* Dropdown y select elementos en modo oscuro */
+.dark-mode .form-select option {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Input group botones en modo oscuro */
+.dark-mode .input-group .btn-outline-secondary {
+    color: #ffffff !important;
+    border-color: #404040 !important;
+    background-color: #2d2d2d !important;
+}
+
+.dark-mode .input-group .btn-outline-secondary:hover {
+    background-color: #404040 !important;
+    border-color: #505050 !important;
+}
+
+/* Checkbox y radio en modo oscuro */
+.dark-mode .form-check-input {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .form-check-input:checked {
+    background-color: var(--marvel-blue) !important;
+    border-color: var(--marvel-blue) !important;
+}
+
+/* Select dropdown en modo oscuro */
+.dark-mode select option {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Botones en el input group */
+.dark-mode .input-group .btn {
+    border-color: #404040 !important;
+}
+
+/* Estilos específicos para el botón de filtros */
+.dark-mode .dropdown-toggle.btn-outline-secondary {
+    color: #ffffff !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .dropdown-toggle.btn-outline-secondary:hover,
+.dark-mode .dropdown-toggle.btn-outline-secondary:focus {
+    background-color: #404040 !important;
+    border-color: #505050 !important;
+}
+
+/* Ajustes para el botón de búsqueda */
+.dark-mode .bg-marvel-blue {
+    border-color: var(--marvel-blue) !important;
+}
+
+/* Focus estados para todos los elementos interactivos */
+.dark-mode .form-control:focus,
+.dark-mode .form-select:focus,
+.dark-mode .btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(81, 140, 202, 0.25) !important;
+}
+
+/* Ajustes para el año en los selects */
+.dark-mode select[id="year-filter"] {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Ajustes para el botón de cerrar en modales y offcanvas */
+.dark-mode .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* modo oscuro */
+.dark-mode {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+/* Añadir estilos para el flex banner en modo oscuro */
+.dark-mode .bg-body,
+.dark-mode .bg-light {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+/* Mantener los colores de los iconos en modo oscuro */
+.dark-mode .text-primary {
+    color: #518CCA !important;
+}
+
+.dark-mode .text-danger {
+    color: var(--marvel-red) !important;
+}
+
+.dark-mode .text-success {
+    color: #28a745 !important;
+}
+
+.dark-mode .text-warning {
+    color: var(--marvel-orange) !important;
+}
+
+/* Ajustar el texto de las estadísticas */
+.dark-mode .fs-5,
+.dark-mode .mb-0,
+.dark-mode h6 {
+    color: #ffffff !important;
+}
+
+/* Resto de estilos del modo oscuro... */
+.dark-mode .card {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .modal-content {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .list-group-item {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .navbar {
+    background-color: var(--marvel-red) !important;
+}
+
+.dark-mode #darkModeToggle {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: 1px solid #404040;
+}
+
+#darkModeToggle {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid #dee2e6;
+}
+
+.dark-mode .dropdown-menu {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .dropdown-item {
+    color: #ffffff !important;
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: #404040 !important;
+}
+
+.dark-mode .form-control {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .offcanvas {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+
+/* Estilos de hover para las cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos para el hero banner */
+.hero-banner {
+    background-image: url('https://www.looper.com/img/gallery/the-biggest-marvel-characters-that-still-have-no-plans-to-debut-in-the-mcu/intro-1611277038.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    color: white;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-banner h2 {
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos de navegación */
+.navbar-nav .nav-link {
+    color: white !important;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 4px;
+}
+
+/* Tooltips y Popovers en modo oscuro */
+.dark-mode .tooltip-inner,
+.dark-mode .popover-header,
+.dark-mode .popover-body {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .bs-popover-auto[data-popper-placement^=right]>.popover-arrow::after,
+.dark-mode .bs-popover-end>.popover-arrow::after,
+.dark-mode .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before,
+.dark-mode .bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #2d2d2d !important;
+}
+
+.dark-mode .bs-popover-auto[data-popper-placement^=left]>.popover-arrow::after,
+.dark-mode .bs-popover-start>.popover-arrow::after,
+.dark-mode .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before,
+.dark-mode .bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #2d2d2d !important;
+}
+
+.dark-mode .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::after,
+.dark-mode .bs-popover-top>.popover-arrow::after,
+.dark-mode .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+.dark-mode .bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #2d2d2d !important;
+}
+
+.dark-mode .bs-popover-auto[data-popper-placement^=bottom]>.popover-arrow::after,
+.dark-mode .bs-popover-bottom>.popover-arrow::after,
+.dark-mode .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before,
+.dark-mode .bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #2d2d2d !important;
+}
+
+/* Asegurar que el texto sea visible en todos los elementos */
+.dark-mode .card-title,
+.dark-mode .card-text,
+.dark-mode .popover-header,
+.dark-mode .popover-body,
+.dark-mode .tooltip {
+    color: #ffffff !important;
+}
+
+.dark-mode .text-muted {
+    color: #a7a7a7 !important;
+}
+
+/* Asegurar que los links dentro de los popovers sean visibles */
+.dark-mode .popover-body a {
+    color: var(--marvel-blue) !important;
+}
+
+/* Ajustar el color de los bordes de los popovers */
+.dark-mode .popover {
+    border-color: #404040 !important;
+}
+
+/* Añadir al styles.css - Estilos para alerts en modo oscuro */
+
+/* Estilos base para alerts en modo oscuro */
+.dark-mode .alert {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+    color: #ffffff !important;
+}
+
+/* Alert Success */
+.dark-mode .alert-success {
+    background-color: #1b4332 !important;
+    border-color: #2d6a4f !important;
+    color: #d1fae5 !important;
+}
+
+/* Alert Info */
+.dark-mode .alert-info {
+    background-color: #1e3a5f !important;
+    border-color: #2563eb !important;
+    color: #dbeafe !important;
+}
+
+/* Alert Warning */
+.dark-mode .alert-warning {
+    background-color: #854d0e !important;
+    border-color: #d97706 !important;
+    color: #fef3c7 !important;
+}
+
+/* Alert Danger */
+.dark-mode .alert-danger {
+    background-color: #991b1b !important;
+    border-color: #dc2626 !important;
+    color: #fee2e2 !important;
+}
+
+/* Estilos para iconos en los alerts */
+.dark-mode .alert i {
+    opacity: 0.9;
+}
+
+/* Estilos para el botón de cerrar en los alerts */
+.dark-mode .alert .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Alert links */
+.dark-mode .alert a {
+    color: inherit;
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+.dark-mode .alert a:hover {
+    opacity: 1;
+}
+
+/* Toast específicos en modo oscuro */
+.dark-mode .toast {
+    background-color: #2d2d2d !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode .toast-header {
+    background-color: #363636 !important;
+    color: #ffffff !important;
+    border-bottom-color: #404040 !important;
+}
+
+.dark-mode .toast-body {
+    color: #ffffff !important;
+}
+
+/* Variantes de Toast */
+.dark-mode .toast-header.bg-primary {
+    background-color: var(--marvel-blue) !important;
+}
+
+.dark-mode .toast-header.bg-danger {
+    background-color: var(--marvel-red) !important;
+}
+
+.dark-mode .toast-header.bg-success {
+    background-color: #2d6a4f !important;
+}
+
+.dark-mode .toast-header.bg-warning {
+    background-color: var(--marvel-orange) !important;
+}

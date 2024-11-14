@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-marvel-red">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold text-uppercase" href="#home">Marvel Explorer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#characters">Personajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comics">Cómics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events">Eventos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="app" role="main"></main>
+
+    <footer class="bg-marvel-red text-white text-center py-3 mt-4">
+        <div class="container">
+            <p class="mb-1">© 2024 Marvel Explorer. Todos los derechos reservados.</p>
+            <p class="mb-0">
+                Integrantes:<br>
+                Flores Chable Noelia Del Carmen<br>
+                Aviles Ayuso Angel R.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="config.js"></script>
+    <script src="utils.js"></script>
+    <script src="api.js"></script>
+    <script src="homePage.js"></script>
+    <script src="charactersPage.js"></script>
+    <script src="comicsPage.js"></script>
+    <script src="eventsPage.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
