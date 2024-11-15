@@ -84,6 +84,12 @@ function initDarkMode() {
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
         darkModeBtn.innerHTML = '<i class="bi bi-sun-fill"></i>';
+        // Cambiar el navbar del modal a modo oscuro
+        const modalNavbar = document.querySelector('#character-nav');
+        if (modalNavbar) {
+            modalNavbar.classList.add('navbar-dark');
+            modalNavbar.classList.remove('navbar-light');
+        }
     }
 
     // Event listener para toggle
@@ -92,6 +98,18 @@ function initDarkMode() {
         const isDark = document.body.classList.contains('dark-mode');
         localStorage.setItem('darkMode', isDark);
         darkModeBtn.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+
+        // Cambiar el navbar del modal según el estado
+        const modalNavbar = document.querySelector('#character-nav');
+        if (modalNavbar) {
+            if (isDark) {
+                modalNavbar.classList.add('navbar-dark');
+                modalNavbar.classList.remove('navbar-light');
+            } else {
+                modalNavbar.classList.remove('navbar-dark');
+                modalNavbar.classList.add('navbar-light');
+            }
+        }
     });
 }
 

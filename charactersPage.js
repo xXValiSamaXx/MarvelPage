@@ -366,7 +366,7 @@ async function showCharacterDetails(character) {
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <nav id="character-nav" class="navbar navbar-light sticky-top" style="top: 20px;">
+                        <nav id="character-nav" class="navbar sticky-top" style="top: 20px;">
                             <nav class="nav nav-pills flex-column">
                                 <button class="nav-link active" data-bs-target="#description">Descripción</button>
                                 <button class="nav-link" data-bs-target="#comics">Cómics</button>
@@ -453,6 +453,16 @@ async function showCharacterDetails(character) {
         document.querySelectorAll('#character-nav .nav-link').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
+                
+                // Remover la clase 'active' de todos los botones
+                document.querySelectorAll('#character-nav .nav-link').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Agregar la clase 'active' al botón clicado
+                e.target.classList.add('active');
+        
+                // Hacer scroll hacia el elemento correspondiente
                 const targetId = e.target.getAttribute('data-bs-target');
                 const targetElement = document.querySelector(targetId);
                 targetElement.scrollIntoView({ behavior: 'smooth' });

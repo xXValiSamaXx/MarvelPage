@@ -209,8 +209,30 @@
     color: #ffffff !important;
 }
 
-.dark-mode .navbar {
-    background-color: var(--marvel-red) !important;
+/* Estilos para el navbar en modo oscuro */
+.navbar-dark {
+    background-color: #343a40; /* Color de fondo oscuro */
+}
+
+.navbar-dark .nav-link {
+    color: #fff; /* Color de texto en modo oscuro */
+}
+
+.navbar-dark .nav-link.active {
+    color: #007bff20; /* Color de texto activo en modo oscuro */
+}
+
+/* Estilos para el navbar en modo claro */
+.navbar-light {
+    background-color: #f8f9fa; /* Color de fondo claro */
+}
+
+.navbar-light .nav-link {
+    color: #000000; /* Color de texto en modo claro */
+}
+
+.navbar-light .nav-link.active {
+    color: #ffffff; /* Color de texto activo en modo claro */
 }
 
 .dark-mode #darkModeToggle {
@@ -356,7 +378,6 @@
     border-color: #404040 !important;
 }
 
-/* Añadir al styles.css - Estilos para alerts en modo oscuro */
 
 /* Estilos base para alerts en modo oscuro */
 .dark-mode .alert {
@@ -445,4 +466,16 @@
 
 .dark-mode .toast-header.bg-warning {
     background-color: var(--marvel-orange) !important;
+}
+
+/* Estilos para el botón en modo claro */
+#apply-filters {
+    background-color: var(--marvel-red); /* Color de fondo en modo claro */
+    color: #ffffff; /* Color del texto en blanco */
+}
+
+/* Asegúrate de que el botón tenga un buen contraste */
+#apply-filters:hover {
+    background-color: rgba(227, 82, 82, 0.545); /* Color de fondo más claro al pasar el mouse */
+    color: #ffffff; /* Mantener el texto blanco al pasar el mouse */
 }
