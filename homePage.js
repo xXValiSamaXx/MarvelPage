@@ -3,6 +3,25 @@ async function renderHomePage(container) {
     initDarkMode();
     
     container.innerHTML = `
+
+        <!-- Hero Banner  -->
+        <div class="hero-banner mb-4">
+            <div class="container h-100 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <h2 class="display-4 mb-4">Explora el Universo Marvel</h2>
+                    <p class="lead mb-4">Descubre todos los héroes, villanos y sus increíbles historias</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#comics" class="btn btn-danger btn-lg">
+                            <i class="bi bi-search me-2"></i>Buscar Personajes
+                        </a>
+                        <a href="#characters" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-collection me-2"></i>Ver Cómics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Carousel -->
         <div id="marvelCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -46,13 +65,18 @@ async function renderHomePage(container) {
             </button>
         </div>
 
-        <div class="container">
+       <div class="container">
+            <!-- También actualizamos los títulos de sección para que sean navegables -->
             <section class="mb-5">
-                <h2 class="text-center mb-4">Personajes Populares</h2>
+                <h2 class="text-center mb-4">
+                    <a href="#/characters" class="text-decoration-none text-dark">Personajes Populares</a>
+                </h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="character-grid"></div>
             </section>
             <section>
-                <h2 class="text-center mb-4">Cómics Destacados</h2>
+                <h2 class="text-center mb-4">
+                    <a href="#/comics" class="text-decoration-none text-dark">Cómics Destacados</a>
+                </h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="comic-grid"></div>
             </section>
         </div>
@@ -60,6 +84,15 @@ async function renderHomePage(container) {
 
     await renderPopularCharacters();
     await renderRecentComics();
+
+    // Agregar listeners para modo oscuro en los enlaces de títulos
+    const titleLinks = document.querySelectorAll('h2 a');
+    titleLinks.forEach(link => {
+        if (document.body.classList.contains('dark-mode')) {
+            link.classList.remove('text-dark');
+            link.classList.add('text-light');
+        }
+    });
 }
 
 // Función para inicializar el Dark Mode
