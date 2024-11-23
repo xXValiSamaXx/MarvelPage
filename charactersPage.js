@@ -56,36 +56,59 @@ async function renderCharactersPage(container) {
                         <input type="text" id="character-name" class="form-control" placeholder="Buscar personaje...">
                         <button class="btn btn-outline-secondary dropdown-toggle d-none d-md-block" type="button" 
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtros
+                            Filtros Avanzados
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><h6 class="dropdown-header">Ordenar por</h6></li>
-                            <li><button class="dropdown-item" type="button" data-sort="name">Nombre</button></li>
-                            <li><button class="dropdown-item" type="button" data-sort="modified">Última modificación</button></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><h6 class="dropdown-header">Mostrar solo</h6></li>
-                            <li>
-                                <button class="dropdown-item" type="button" data-filter="comics">
-                                    Con cómics <span class="badge bg-primary rounded-pill ms-2"></span>
+                        <div class="dropdown-menu dropdown-menu-end p-3" style="width: 300px;">
+                            <h6 class="dropdown-header">Ordenar por</h6>
+                            <div class="mb-3">
+                                <select class="form-select form-select-sm" id="characterOrderBy">
+                                    <option value="name">Nombre (A-Z)</option>
+                                    <option value="-name">Nombre (Z-A)</option>
+                                    <option value="modified">Fecha de modificación (Antigua)</option>
+                                    <option value="-modified">Fecha de modificación (Reciente)</option>
+                                </select>
+                            </div>
+
+                            <h6 class="dropdown-header">Filtros de Contenido</h6>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="hasComicsFilter">
+                                <label class="form-check-label" for="hasComicsFilter">
+                                    Solo con cómics
+                                </label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="hasSeriesFilter">
+                                <label class="form-check-label" for="hasSeriesFilter">
+                                    Solo con series
+                                </label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="hasEventsFilter">
+                                <label class="form-check-label" for="hasEventsFilter">
+                                    Solo con eventos
+                                </label>
+                            </div>
+
+                            <h6 class="dropdown-header">Cantidad mínima de apariciones</h6>
+                            <div class="mb-3">
+                                <label for="minComics" class="form-label d-flex justify-content-between">
+                                    Cómics: <span id="minComicsValue">0</span>
+                                </label>
+                                <input type="range" class="form-range" id="minComics" min="0" max="100" value="0">
+                            </div>
+                            <div class="mb-3">
+                                <label for="minSeries" class="form-label d-flex justify-content-between">
+                                    Series: <span id="minSeriesValue">0</span>
+                                </label>
+                                <input type="range" class="form-range" id="minSeries" min="0" max="50" value="0">
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-sm" id="applyAdvancedFilters">
+                                    Aplicar Filtros
                                 </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button" data-filter="series">
-                                    Con series <span class="badge bg-primary rounded-pill ms-2"></span>
-                                </button>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li>
-                                <div class="px-3 py-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="availableComics">
-                                        <label class="form-check-label" for="availableComics">
-                                            Disponible en cómics
-                                        </label>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                         <button id="apply-filters" class="btn bg-marvel-blue text-white">Buscar</button>
                     </div>
                 </div>
@@ -100,30 +123,49 @@ async function renderCharactersPage(container) {
                 <div class="offcanvas-body">
                     <div class="mb-4">
                         <h6>Ordenar por</h6>
-                        <div class="list-group">
-                            <button class="list-group-item list-group-item-action" data-sort="name">Nombre</button>
-                            <button class="list-group-item list-group-item-action" data-sort="modified">Última modificación</button>
-                        </div>
+                        <select class="form-select mb-3" id="characterOrderByMobile">
+                            <option value="name">Nombre (A-Z)</option>
+                            <option value="-name">Nombre (Z-A)</option>
+                            <option value="modified">Fecha de modificación (Antigua)</option>
+                            <option value="-modified">Fecha de modificación (Reciente)</option>
+                        </select>
                     </div>
 
                     <div class="mb-4">
-                        <h6>Mostrar solo</h6>
-                        <div class="list-group">
-                            <button class="list-group-item list-group-item-action" data-filter="comics">
-                                Con cómics
-                            </button>
-                            <button class="list-group-item list-group-item-action" data-filter="series">
-                                Con series
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="availableComics-mobile">
-                            <label class="form-check-label" for="availableComics-mobile">
-                                Disponible en cómics
+                        <h6>Filtros de Contenido</h6>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="hasComicsFilterMobile">
+                            <label class="form-check-label" for="hasComicsFilterMobile">
+                                Solo con cómics
                             </label>
+                        </div>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="hasSeriesFilterMobile">
+                            <label class="form-check-label" for="hasSeriesFilterMobile">
+                                Solo con series
+                            </label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="hasEventsFilterMobile">
+                            <label class="form-check-label" for="hasEventsFilterMobile">
+                                Solo con eventos
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6>Cantidad mínima de apariciones</h6>
+                        <div class="mb-3">
+                            <label for="minComicsMobile" class="form-label d-flex justify-content-between">
+                                Cómics: <span id="minComicsValueMobile">0</span>
+                            </label>
+                            <input type="range" class="form-range" id="minComicsMobile" min="0" max="100" value="0">
+                        </div>
+                        <div class="mb-3">
+                            <label for="minSeriesMobile" class="form-label d-flex justify-content-between">
+                                Series: <span id="minSeriesValueMobile">0</span>
+                            </label>
+                            <input type="range" class="form-range" id="minSeriesMobile" min="0" max="50" value="0">
                         </div>
                     </div>
 
@@ -148,36 +190,53 @@ async function renderCharactersPage(container) {
         </div>
     `;
 
-    // Event listeners para filtros y búsqueda
-    document.querySelectorAll('[data-sort], [data-filter]').forEach(item => {
-        item.addEventListener('click', (e) => {
-            const type = e.target.hasAttribute('data-sort') ? 'sort' : 'filter';
-            const value = e.target.dataset[type];
-            
-            document.querySelectorAll(`[data-${type}]`).forEach(el => {
-                el.classList.remove('active');
-            });
-            
-            e.target.classList.add('active');
-            
-            const mobileElement = document.querySelector(`#filterOffcanvas [data-${type}="${value}"]`);
-            const desktopElement = document.querySelector(`.dropdown-menu [data-${type}="${value}"]`);
-            
-            if (mobileElement) mobileElement.classList.add('active');
-            if (desktopElement) desktopElement.classList.add('active');
-            
-            searchCharacters();
-        });
+    // Event listeners
+    document.getElementById('minComics').addEventListener('input', (e) => {
+        document.getElementById('minComicsValue').textContent = e.target.value;
+        document.getElementById('minComicsMobile').value = e.target.value;
+        document.getElementById('minComicsValueMobile').textContent = e.target.value;
+    });
+
+    document.getElementById('minSeries').addEventListener('input', (e) => {
+        document.getElementById('minSeriesValue').textContent = e.target.value;
+        document.getElementById('minSeriesMobile').value = e.target.value;
+        document.getElementById('minSeriesValueMobile').textContent = e.target.value;
+    });
+
+    document.getElementById('minComicsMobile').addEventListener('input', (e) => {
+        document.getElementById('minComicsValueMobile').textContent = e.target.value;
+        document.getElementById('minComics').value = e.target.value;
+        document.getElementById('minComicsValue').textContent = e.target.value;
+    });
+
+    document.getElementById('minSeriesMobile').addEventListener('input', (e) => {
+        document.getElementById('minSeriesValueMobile').textContent = e.target.value;
+        document.getElementById('minSeries').value = e.target.value;
+        document.getElementById('minSeriesValue').textContent = e.target.value;
+    });
+
+    // Sincronizar selects de ordenamiento
+    document.getElementById('characterOrderBy').addEventListener('change', (e) => {
+        document.getElementById('characterOrderByMobile').value = e.target.value;
+    });
+
+    document.getElementById('characterOrderByMobile').addEventListener('change', (e) => {
+        document.getElementById('characterOrderBy').value = e.target.value;
     });
 
     // Sincronizar checkboxes
-    document.getElementById('availableComics').addEventListener('change', (e) => {
-        document.getElementById('availableComics-mobile').checked = e.target.checked;
-        searchCharacters();
+    ['hasComics', 'hasSeries', 'hasEvents'].forEach(filter => {
+        document.getElementById(`${filter}Filter`).addEventListener('change', (e) => {
+            document.getElementById(`${filter}FilterMobile`).checked = e.target.checked;
+        });
+
+        document.getElementById(`${filter}FilterMobile`).addEventListener('change', (e) => {
+            document.getElementById(`${filter}Filter`).checked = e.target.checked;
+        });
     });
 
-    document.getElementById('availableComics-mobile').addEventListener('change', (e) => {
-        document.getElementById('availableComics').checked = e.target.checked;
+    document.getElementById('applyAdvancedFilters').addEventListener('click', (e) => {
+        e.preventDefault();
         searchCharacters();
     });
 
@@ -187,20 +246,6 @@ async function renderCharactersPage(container) {
             searchCharacters();
         }
     });
-}
-
-function updateStatsFromResults(characters) {
-    const stats = characters.reduce((acc, char) => {
-        acc.comics += char.comics.available;
-        acc.series += char.series.available;
-        acc.events += char.events.available;
-        return acc;
-    }, { comics: 0, series: 0, events: 0 });
-
-    document.getElementById('total-characters').textContent = characters.length.toLocaleString();
-    document.getElementById('total-comics').textContent = stats.comics.toLocaleString();
-    document.getElementById('total-series').textContent = stats.series.toLocaleString();
-    document.getElementById('total-events').textContent = stats.events.toLocaleString();
 }
 
 async function searchCharacters() {
@@ -228,39 +273,32 @@ async function searchCharacters() {
     }
 
     const searchTerm = characterName.slice(0, 3);
-    const sortType = document.querySelector('[data-sort].active')?.dataset.sort;
-    const filterType = document.querySelector('[data-filter].active')?.dataset.filter;
-    const availableComics = document.getElementById('availableComics').checked;
+    const orderBy = document.getElementById('characterOrderBy').value;
+    const hasComics = document.getElementById('hasComicsFilter').checked;
+    const hasSeries = document.getElementById('hasSeriesFilter').checked;
+    const hasEvents = document.getElementById('hasEventsFilter').checked;
+    const minComics = parseInt(document.getElementById('minComics').value);
+    const minSeries = parseInt(document.getElementById('minSeries').value);
 
     try {
         const characters = await getCharacters({ 
             nameStartsWith: searchTerm,
+            orderBy,
             limit: 100
         });
 
         if (characters?.results?.length > 0) {
             let filteredResults = characters.results;
 
-            if (filterType === 'comics') {
-                filteredResults = filteredResults.filter(char => char.comics.available > 0);
-            } else if (filterType === 'series') {
-                filteredResults = filteredResults.filter(char => char.series.available > 0);
-            }
-
-            if (availableComics) {
-                filteredResults = filteredResults.filter(char => char.comics.available > 0);
-            }
-
-            if (sortType) {
-                filteredResults.sort((a, b) => {
-                    if (sortType === 'name') {
-                        return a.name.localeCompare(b.name);
-                    } else if (sortType === 'modified') {
-                        return new Date(b.modified) - new Date(a.modified);
-                    }
-                    return 0;
-                });
-            }
+            // Aplicar filtros avanzados
+            filteredResults = filteredResults.filter(char => {
+                if (hasComics && char.comics.available === 0) return false;
+                if (hasSeries && char.series.available === 0) return false;
+                if (hasEvents && char.events.available === 0) return false;
+                if (char.comics.available < minComics) return false;
+                if (char.series.available < minSeries) return false;
+                return true;
+            });
 
             // Actualizar estadísticas con los resultados filtrados
             updateStatsFromResults(filteredResults);
@@ -312,6 +350,16 @@ async function searchCharacters() {
                     });
                 });
             });
+
+            if (filteredResults.length === 0) {
+                characterResults.innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            No se encontraron personajes que cumplan con los filtros seleccionados.
+                        </div>
+                    </div>`;
+            }
         } else {
             characterResults.innerHTML = `
                 <div class="col-12 text-center">
@@ -333,6 +381,20 @@ async function searchCharacters() {
             </div>`;
         updateStatsFromResults([]);
     }
+}
+
+function updateStatsFromResults(characters) {
+    const stats = characters.reduce((acc, char) => {
+        acc.comics += char.comics.available;
+        acc.series += char.series.available;
+        acc.events += char.events.available;
+        return acc;
+    }, { comics: 0, series: 0, events: 0 });
+
+    document.getElementById('total-characters').textContent = characters.length.toLocaleString();
+    document.getElementById('total-comics').textContent = stats.comics.toLocaleString();
+    document.getElementById('total-series').textContent = stats.series.toLocaleString();
+    document.getElementById('total-events').textContent = stats.events.toLocaleString();
 }
 
 async function showCharacterDetails(character) {

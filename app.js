@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
             case '#events':
                 renderEventsPage(appContainer);
                 break;
+             case '#extra':
+                renderExtraPage(appContainer);
+                break;
             default:
                 renderHomePage(appContainer);
         }

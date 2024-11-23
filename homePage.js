@@ -3,6 +3,25 @@ async function renderHomePage(container) {
     initDarkMode();
     
     container.innerHTML = `
+
+        <!-- Hero Banner  -->
+        <div class="hero-banner mb-4">
+            <div class="container h-100 d-flex align-items-center justify-content-center">
+                <div class="text-center">
+                    <h2 class="display-4 mb-4">Explora el Universo Marvel</h2>
+                    <p class="lead mb-4">Descubre todos los héroes, villanos y sus increíbles historias</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#comics" class="btn btn-danger btn-lg">
+                            <i class="bi bi-search me-2"></i>Buscar Personajes
+                        </a>
+                        <a href="#characters" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-collection me-2"></i>Ver Cómics
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Carousel -->
         <div id="marvelCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -46,13 +65,18 @@ async function renderHomePage(container) {
             </button>
         </div>
 
-        <div class="container">
+       <div class="container">
+            <!-- También actualizamos los títulos de sección para que sean navegables -->
             <section class="mb-5">
-                <h2 class="text-center mb-4">Personajes Populares</h2>
+                <h2 class="text-center mb-4">
+                    <a href="#/characters" class="text-decoration-none text-dark">Personajes Populares</a>
+                </h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="character-grid"></div>
             </section>
             <section>
-                <h2 class="text-center mb-4">Cómics Destacados</h2>
+                <h2 class="text-center mb-4">
+                    <a href="#/comics" class="text-decoration-none text-dark">Cómics Destacados</a>
+                </h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4" id="comic-grid"></div>
             </section>
         </div>
@@ -60,6 +84,16 @@ async function renderHomePage(container) {
 
     await renderPopularCharacters();
     await renderRecentComics();
+    await renderMarvelComponents(container);
+
+    // Agregar listeners para modo oscuro en los enlaces de títulos
+    const titleLinks = document.querySelectorAll('h2 a');
+    titleLinks.forEach(link => {
+        if (document.body.classList.contains('dark-mode')) {
+            link.classList.remove('text-dark');
+            link.classList.add('text-light');
+        }
+    });
 }
 
 // Función para inicializar el Dark Mode
@@ -192,6 +226,90 @@ async function renderRecentComics() {
     }
 }
 
+async function renderMarvelComponents(container) {
+    const marvelSection = createElement('section', { class: 'container my-5' }, `
+        <!-- Formulario de Newsletter -->
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Suscríbete a las novedades de Marvel</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="newsletterForm" class="needs-validation" novalidate>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingName" placeholder="Tu nombre" required>
+                                <label for="floatingName">Nombre</label>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresa tu nombre
+                                </div>
+                            </div>
+                            
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingEmail" placeholder="nombre@ejemplo.com" required>
+                                <label for="floatingEmail">Email</label>
+                                <div class="invalid-feedback">
+                                    Por favor, ingresa un email válido
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">¿Qué contenido te interesa?</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="interestComics" checked>
+                                    <label class="form-check-label" for="interestComics">
+                                        Cómics y novelas gráficas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="interestMovies">
+                                    <label class="form-check-label" for="interestMovies">
+                                        Películas y series
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="interestGames">
+                                    <label class="form-check-label" for="interestGames">
+                                        Videojuegos
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100" type="submit">Suscribirse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `);
+
+    // Agregar la sección al contenedor
+    container.appendChild(marvelSection);
+
+    // Event Listeners y funcionalidad
+
+    // Formulario de Newsletter
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!newsletterForm.checkValidity()) {
+                event.stopPropagation();
+            } else {
+                showToast('¡Éxito!', '¡Gracias por suscribirte! Recibirás noticias de Marvel pronto.');
+            }
+            newsletterForm.classList.add('was-validated');
+        });
+    }
+
+    const yearRange = document.getElementById('yearRange');
+    const yearValue = document.getElementById('yearValue');
+    if (yearRange && yearValue) {
+        yearRange.addEventListener('input', (e) => {
+            yearValue.textContent = e.target.value;
+        });
+    }
+}
 async function getCharacterById(id) {
     const response = await fetchMarvelAPI(`characters/${id}`);
     return response.results[0];

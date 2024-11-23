@@ -31,9 +31,37 @@
     background: rgba(0,0,0,0.5);
 }
 
-.hero-banner h2 {
+/* Aseguramos que el contenido esté por encima del overlay */
+.hero-banner .text-center {
     position: relative;
-    z-index: 1;
+    z-index: 10; /* Número mayor para asegurar que esté por encima */
+}
+
+/* Estilos específicos para los botones */
+.hero-banner .btn {
+    position: relative;
+    z-index: 15; /* Aseguramos que los botones estén por encima de todo */
+}
+
+.hero-banner .display-4,
+.hero-banner .lead {
+    position: relative;
+    z-index: 10;
+}
+
+/* Ajustes para los botones */
+.hero-banner .btn-danger {
+    background-color: var(--marvel-red);
+    border-color: var(--marvel-red);
+}
+
+.hero-banner .btn-danger:hover {
+    background-color: #c41e3a;
+    border-color: #c41e3a;
+}
+
+.hero-banner .btn-outline-light:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 .navbar-nav .nav-link {
@@ -466,6 +494,24 @@
 
 .dark-mode .toast-header.bg-warning {
     background-color: var(--marvel-orange) !important;
+}
+
+/* Estilos para los enlaces en modo oscuro */
+.dark-mode h2 a {
+    color: #ffffff !important;
+}
+
+.dark-mode h2 a:hover {
+    color: var(--marvel-red) !important;
+}
+
+/* Transición suave para los enlaces */
+h2 a {
+    transition: color 0.3s ease;
+}
+
+h2 a:hover {
+    color: var(--marvel-red) !important;
 }
 
 /* Estilos para el botón en modo claro */

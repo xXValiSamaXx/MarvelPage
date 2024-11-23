@@ -6,6 +6,66 @@ async function renderComicsPage(container) {
                 <div class="col-md-8 mx-auto">
                     <div class="input-group">
                         <input type="text" id="comic-title" class="form-control" placeholder="Buscar cómic...">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Filtros Avanzados
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end p-3" style="width: 300px;">
+                            <h6 class="dropdown-header">Formato</h6>
+                            <div class="mb-3">
+                                <select class="form-select form-select-sm" id="comicFormat">
+                                    <option value="">Todos los formatos</option>
+                                    <option value="comic">Comic</option>
+                                    <option value="magazine">Magazine</option>
+                                    <option value="trade paperback">Trade Paperback</option>
+                                    <option value="hardcover">Hardcover</option>
+                                    <option value="digest">Digest</option>
+                                    <option value="graphic novel">Graphic Novel</option>
+                                    <option value="digital comic">Digital Comic</option>
+                                </select>
+                            </div>
+
+                            <h6 class="dropdown-header">Fecha de Publicación</h6>
+                            <div class="mb-3">
+                                <select class="form-select form-select-sm" id="dateDescriptor">
+                                    <option value="">Cualquier fecha</option>
+                                    <option value="lastWeek">Última semana</option>
+                                    <option value="thisMonth">Este mes</option>
+                                    <option value="nextMonth">Próximo mes</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="yearRange" class="form-label d-flex justify-content-between">
+                                    Año: <span id="yearValue">2024</span>
+                                </label>
+                                <input type="range" class="form-range" id="yearRange" 
+                                       min="1939" max="2024" value="2024">
+                            </div>
+
+                            <h6 class="dropdown-header">Ordenar por</h6>
+                            <div class="mb-3">
+                                <select class="form-select form-select-sm" id="comicOrderBy">
+                                    <option value="-focDate">Más recientes primero</option>
+                                    <option value="focDate">Más antiguos primero</option>
+                                    <option value="title">Título (A-Z)</option>
+                                    <option value="-title">Título (Z-A)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="hasDigitalIssue">
+                                <label class="form-check-label" for="hasDigitalIssue">
+                                    Solo ediciones digitales
+                                </label>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-sm" id="applyComicFilters">
+                                    Aplicar Filtros
+                                </button>
+                            </div>
+                        </div>
                         <button id="apply-filters" class="btn bg-marvel-blue text-white">Buscar</button>
                     </div>
                 </div>
@@ -19,17 +79,34 @@ async function renderComicsPage(container) {
         </div>
     `;
 
-    document.getElementById('apply-filters').addEventListener('click', loadComics);
+    // Event listeners
+    document.getElementById('yearRange').addEventListener('input', (e) => {
+        document.getElementById('yearValue').textContent = e.target.value;
+    });
+
+    document.getElementById('applyComicFilters').addEventListener('click', (e) => {
+        e.preventDefault();
+        loadComics(1);
+    });
+
+    document.getElementById('apply-filters').addEventListener('click', () => loadComics(1));
     document.getElementById('comic-title').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
-            loadComics();
+            loadComics(1);
         }
     });
+
+    // Cargar cómics iniciales
+    await loadComics(1);
 }
 
 async function loadComics(page = 1) {
     const comicTitle = document.getElementById('comic-title').value;
-    const searchTerm = comicTitle.slice(0, 3);
+    const format = document.getElementById('comicFormat').value;
+    const dateDescriptor = document.getElementById('dateDescriptor').value;
+    const year = document.getElementById('yearRange').value;
+    const orderBy = document.getElementById('comicOrderBy').value;
+    const hasDigitalIssue = document.getElementById('hasDigitalIssue').checked;
     const comicList = document.getElementById('comic-list');
     const itemsPerPage = 20;
     
@@ -51,9 +128,14 @@ async function loadComics(page = 1) {
     let params = { 
         limit: itemsPerPage,
         offset: (page - 1) * itemsPerPage,
-        orderBy: '-focDate'
+        orderBy
     };
-    if (searchTerm) params.titleStartsWith = searchTerm;
+
+    if (comicTitle) params.titleStartsWith = comicTitle.slice(0, 3);
+    if (format) params.format = format;
+    if (dateDescriptor) params.dateDescriptor = dateDescriptor;
+    if (year) params.startYear = parseInt(year);
+    if (hasDigitalIssue) params.hasDigitalIssue = true;
 
     try {
         const comics = await getComics(params);
@@ -70,6 +152,8 @@ async function loadComics(page = 1) {
                         <div class="card-body text-center">
                             <h3 class="card-title h5 text-marvel-red">${comic.title}</h3>
                             <p class="card-text small">${new Date(comic.dates.find(date => date.type === 'onsaleDate').date).getFullYear()}</p>
+                            ${format ? `<span class="badge bg-primary">${comic.format}</span>` : ''}
+                            ${hasDigitalIssue && comic.digitalId ? '<span class="badge bg-success ms-1">Digital</span>' : ''}
                         </div>
                     </div>
                 `);
@@ -120,7 +204,7 @@ async function loadComics(page = 1) {
                 <div class="col-12 text-center">
                     <div class="alert alert-info">
                         <i class="bi bi-info-circle me-2"></i>
-                        No se encontraron cómics.
+                        No se encontraron cómics con los filtros seleccionados.
                     </div>
                 </div>`;
         }
