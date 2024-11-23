@@ -598,9 +598,6 @@ async function initializeQuiz() {
                     <button class="btn btn-primary" onclick="startQuiz()">
                         Intentar de Nuevo
                     </button>
-                    <button class="btn btn-success" onclick="generateCertificate()">
-                        Generar Certificado
-                    </button>
                 </div>
             </div>
         `;
