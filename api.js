@@ -1,5 +1,17 @@
 const API_BASE_URL = 'https://gateway.marvel.com/v1/public';
 
+// Caché simple en localStorage para reducir llamadas redundantes.
+// TTL en ms (por defecto 30 minutos)
+const CACHE_TTL = 30 * 60 * 1000;
+
+function getCacheKey(endpoint, params) {
+    try {
+        return `marvel_cache:${endpoint}:${JSON.stringify(params || {})}`;
+    } catch (e) {
+        return `marvel_cache:${endpoint}:nocache`;
+    }
+}
+
 async function fetchMarvelAPI(endpoint, params = {}) {
     const progressBar = document.createElement('div');
     progressBar.innerHTML = `
@@ -21,6 +33,24 @@ async function fetchMarvelAPI(endpoint, params = {}) {
     }, 500);
 
     try {
+        // Revisar caché antes de hacer la petición
+        const cacheKey = getCacheKey(endpoint, params);
+        const cachedRaw = localStorage.getItem(cacheKey);
+        if (cachedRaw) {
+            try {
+                const cached = JSON.parse(cachedRaw);
+                if (cached.timestamp && (Date.now() - cached.timestamp) < CACHE_TTL && cached.data) {
+                    // completar barra de progreso visualmente y remover
+                    progressBar.querySelector('.progress-bar').style.width = '100%';
+                    clearInterval(progressInterval);
+                    setTimeout(() => progressBar.remove(), 300);
+                    // retornar datos cacheados
+                    return cached.data;
+                }
+            } catch (e) {
+                // parsing falló, continuar y sobrescribir caché
+            }
+        }
         const url = new URL(`${API_BASE_URL}/${endpoint}`);
         url.search = new URLSearchParams({
             ...params,
@@ -40,6 +70,16 @@ async function fetchMarvelAPI(endpoint, params = {}) {
         setTimeout(() => progressBar.remove(), 500);
 
         const data = await response.json();
+        // Guardar en caché la respuesta útil (data.data) para futuros reloads
+        try {
+            const cacheKey = getCacheKey(endpoint, params);
+            const toStore = JSON.stringify({ timestamp: Date.now(), data: data.data });
+            localStorage.setItem(cacheKey, toStore);
+        } catch (e) {
+            // Si falla el almacenamiento (quota), no es crítico
+            console.warn('No se pudo guardar caché:', e);
+        }
+
         showToast('Éxito', 'Datos cargados correctamente');
         return data.data;
 

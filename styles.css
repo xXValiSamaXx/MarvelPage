@@ -525,3 +525,25 @@ h2 a:hover {
     background-color: rgba(227, 82, 82, 0.545); /* Color de fondo más claro al pasar el mouse */
     color: #ffffff; /* Mantener el texto blanco al pasar el mouse */
 }
+
+/* Estilos para form-floating labels en modo oscuro */
+.dark-mode .form-floating > label {
+    color: #888888 !important;
+}
+
+.dark-mode .form-floating > .form-control:focus ~ label,
+.dark-mode .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: #aaaaaa !important;
+    opacity: 1 !important;
+}
+
+/* Asegurar que los labels no se superpongan con el texto del input */
+.dark-mode .form-floating > .form-control {
+    color: #ffffff !important;
+}
+
+/* Labels para checkboxes y form-labels normales */
+.dark-mode .form-label,
+.dark-mode .form-check-label {
+    color: #ffffff !important;
+}

@@ -59,8 +59,8 @@
 
 | Nombre | Rol |
 |--------|-----|
-| **Flores Chable Noelia Del Carmen** | Desarrollador Frontend |
-| **Aviles Ayuso Angel R.** | Desarrollador FrontEnd y BackEnd |
+| **HERRERA SABIDO ROMAN EMILIO** | Desarrollador Frontend |
+| **ALATORRE LARA ANDRY YUHAIRA** | Desarrollador FrontEnd y BackEnd |
 
 ## 📋 Requisitos Previos
 

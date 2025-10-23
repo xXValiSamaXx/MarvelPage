@@ -144,10 +144,12 @@ function showToast(title, message, type = 'success') {
 }
 
 function createToastContainer() {
+    // Posicionar el contenedor de toasts justo por encima del botón toggle (esquina inferior derecha)
+    // para que las notificaciones no tapen el botón. Usamos bottom con un offset.
     const container = createElement('div', {
         id: 'toast-container',
-        class: 'toast-container position-fixed bottom-0 end-0 p-3',
-        style: 'z-index: 1070;'
+        class: 'toast-container position-fixed end-0 p-3',
+        style: 'z-index: 1070; bottom: 6.8rem;'
     });
     document.body.appendChild(container);
     return container;
